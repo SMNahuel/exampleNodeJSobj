@@ -1,0 +1,54 @@
+<form action="/login" method="POST" class="container-sm">
+    <div class="mb-3 form-group">
+        <h2>Login de prueba</h2>
+    </div>
+    <div>
+        <button id="1" type="submit">Primera página</button>
+    </div>
+</form>
+
+<form action="/segundapagina" method="POST" class="container-sm">
+    <div class="mb-3 form-group">
+    </div>
+    <div>
+        <button id="2" type="submit">Segunda página</button>
+    </div>
+</form>
+
+<form action="/tercerapagina" method="POST" class="container-sm">
+    <div class="mb-3 form-group">
+    </div>
+    <div>
+        <button id="3" type="submit">Tercera página</button>
+    </div>
+</form>
+
+
+<!--<script>
+    async function validarUsuario(usuario) {
+        try {
+            const response = await fetch(`/validarUsuario?usuario=${usuario}`);
+            const data = await response.json();
+
+            if (data.existe) {
+                console.log("El usuario ya está registrado.");
+            } else {
+                console.log("El usuario no está registrado. Puedes proceder con el registro.");
+                // Aquí puedes continuar con el proceso de registro
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+
+    function guardar() {
+        var text = select.options[select.selectedIndex].text;
+        console.log(text);
+        if (text === "Seleccione un valor") {
+            return alert("Seleccione una opcion valida");
+        }
+
+        var usuario = document.getElementById("inputs_1").value;
+        validarUsuario(usuario);
+    }
+</script> -->

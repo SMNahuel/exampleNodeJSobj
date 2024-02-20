@@ -1,0 +1,220 @@
+<div  id="nosee" class="divPantalla pantallaCuadros">
+    <button id="nose" onclick="mostrarImagenes()">Cargar</button>
+    <div id="segundaPantalla" class="contenedor_fotos">
+                    
+    </div>
+    <button onclick="guardarfinal()" class="btn btn-dark">Enviar</button>
+</div>
+<script src="/js/dom.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correo Electrónico</title>
+    <style>
+        .correo {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="segundaPantalla">
+        <!-- Aquí se mostrarán los correos electrónicos -->
+    </div>
+    <button onclick="eleminarElemento()">Eliminar Correos Seleccionados</button>
+
+    <script>
+        class Objeto2 {
+            constructor(text1, text2, text3) {
+                this.text1 = text1;
+                this.text2 = text2;
+                this.text3 = text3;
+            }
+        }
+
+        const vectorObjetos2 = [
+            new Objeto2("Primer mail ", "primeroo ", "este es el primer maill"),
+            new Objeto2("Segundo mail ", "segundoo", "este es el segundo maill 2"),
+            new Objeto2("Examen 5to Info ", "terceroo ", "este es el tercer maill 3"),
+        ];
+
+        function mostrarCorreos() {
+            let div = document.getElementById("segundaPantalla");
+            for (let i = 0; i < vectorObjetos2.length; i++) {
+                let container = document.createElement("div");
+                container.className = "correo";
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "messageCheckbox";
+                checkbox.id = `c${i}`;
+                let text1 = document.createElement("h3");
+                let text2 = document.createElement("h4");
+                let text3 = document.createElement("p");
+                text1.textContent = vectorObjetos2[i].text1;
+                text2.textContent = vectorObjetos2[i].text2;
+                text3.textContent = vectorObjetos2[i].text3;
+                container.appendChild(checkbox);
+                container.appendChild(text1);
+                container.appendChild(text2);
+                container.appendChild(text3);
+                div.appendChild(container);
+            }
+        }
+
+        function eleminarElemento() {
+            let select = document.getElementsByClassName("messageCheckbox");
+            let div = document.getElementById("segundaPantalla");
+            for (let i = 0; i < select.length; i++) {
+                if (select[i].checked) {
+                    let element = select[i].closest(".correo");
+                    div.removeChild(element);
+                }
+            }
+        }
+
+        function guardarfinal() {
+            let indicesSeleccionados = [];
+            let botonesSeleccionados = 0;
+            for (let i = 0; i < vectorObjetos2.length; i++) {
+                let isChecked = document.getElementById(`c${i}`).checked;
+                if (isChecked) {
+                    botonesSeleccionados++;
+                }
+            }
+            if (botonesSeleccionados >= 1) {
+                for (let j = 0; j < vectorObjetos2.length; j++) {
+                    let isChecked = document.getElementById(`c${j}`).checked;
+                    if (isChecked) {
+                        indicesSeleccionados.push(j);
+                    }
+                }
+                indicesSeleccionados.reverse();
+                for (let k = 0; k < indicesSeleccionados.length; k++) {
+                    vectorObjetos2.splice(indicesSeleccionados[k], 1);
+                }
+            } else {
+                alert("No hay más de 1 valor verdadero.");
+            }
+        }
+
+        mostrarCorreos();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correo Electrónico</title>
+    <style>
+        .correo {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <select id="selectUsuario" onchange="mostrarCorreos()">
+        <option value="nfacon@pioix.edu.ar">Nico Facón</option>
+        <option value="mrivas@pioix.edu.ar">Martín Rivas</option>
+        <option value="alumnosa@pioix.edu.ar">Alumnos de 5toA Info</option>
+        <option value="alumnosb@pioix.edu.ar">Alumnos de 5toB Info</option>
+    </select>
+
+    <div id="segundaPantalla">
+        <!-- Aquí se mostrarán los correos -->
+    </div>
+
+    <button onclick="eleminarElemento()">Eliminar Correos Seleccionados</button>
+    <button onclick="guardarfinal()">Guardar Cambios</button>
+
+    <script>
+        class Email {
+            constructor(asunto, mensaje) {
+                this.asunto = asunto;
+                this.mensaje = mensaje;
+            }
+        }
+
+        const usuarios = {
+            "nfacon@pioix.edu.ar": [
+                new Email("Asunto 1 de Nico", "Mensaje 1 de Nico"),
+                new Email("Asunto 2 de Nico", "Mensaje 2 de Nico"),
+            ],
+            "mrivas@pioix.edu.ar": [
+                new Email("Asunto 1 de Martín", "Mensaje 1 de Martín"),
+                new Email("Asunto 2 de Martín", "Mensaje 2 de Martín"),
+            ],
+            "alumnosa@pioix.edu.ar": [
+                new Email("Asunto 1 de Alumnos A", "Mensaje 1 de Alumnos A"),
+                new Email("Asunto 2 de Alumnos A", "Mensaje 2 de Alumnos A"),
+            ],
+            "alumnosb@pioix.edu.ar": [
+                new Email("Asunto 1 de Alumnos B", "Mensaje 1 de Alumnos B"),
+                new Email("Asunto 2 de Alumnos B", "Mensaje 2 de Alumnos B"),
+            ],
+        };
+
+        let correosEliminados = []; // Lista de índices de correos eliminados
+
+        function mostrarCorreos() {
+            let div = document.getElementById("segundaPantalla");
+            div.innerHTML = ""; // Limpiar contenido anterior
+
+            const usuarioSeleccionado = document.getElementById("selectUsuario").value;
+            const correos = usuarios[usuarioSeleccionado];
+
+            if (correos) {
+                for (let i = 0; i < correos.length; i++) {
+                    if (!correosEliminados.includes(i)) { // No mostrar correos eliminados
+                        let container = document.createElement("div");
+                        container.className = "correo";
+                        let checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.className = "messageCheckbox";
+                        checkbox.id = `c${i}`;
+                        let asunto = document.createElement("h3");
+                        let mensaje = document.createElement("p");
+                        asunto.textContent = correos[i].asunto;
+                        mensaje.textContent = correos[i].mensaje;
+                        container.appendChild(checkbox);
+                        container.appendChild(asunto);
+                        container.appendChild(mensaje);
+                        div.appendChild(container);
+                    }
+                }
+            }
+        }
+
+        function eleminarElemento() {
+            let select = document.getElementsByClassName("messageCheckbox");
+            let usuarioSeleccionado = document.getElementById("selectUsuario").value;
+            let correos = usuarios[usuarioSeleccionado];
+
+            for (let i = select.length - 1; i >= 0; i--) {
+                if (select[i].checked) {
+                    correosEliminados.push(i); // Agregar índice a la lista de correos eliminados
+                    let element = select[i].closest(".correo");
+                    element.style.display = "none"; // Ocultar correo en lugar de eliminarlo
+                }
+            }
+        }
+
+        function guardarfinal() {
+            correosEliminados = []; // Limpiar la lista de correos eliminados al guardar cambios
+        }
+
+        mostrarCorreos(); // Mostrar correos del usuario por defecto al cargar la página
+    </script>
+</body>
+</html>
+
+
+

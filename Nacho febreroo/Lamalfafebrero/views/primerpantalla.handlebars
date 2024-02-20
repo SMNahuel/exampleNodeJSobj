@@ -1,0 +1,16 @@
+<div  id="tampocose" class="divPantalla pantallaInputs">
+    
+    <select id="selectScreen">
+        {{#each emails}}
+            <option>{{this.texto1}}</option>
+        {{/each}}
+    </select>  
+    <div id="inputs">
+        <input id="inputs_1" type="text">
+        <input id="inputs_2" type="text">
+    </div>              
+    <button onclick="guardar()" class="btn btn-dark">Guardar</button>
+</div>
+<script src="/js/si.js"></script> 
+
+

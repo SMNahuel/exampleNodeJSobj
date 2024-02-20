@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correo Electrónico</title>
+    <style>
+        .correo {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tercera-pantalla {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="terceraPantalla" >
+        <h2>Redactar Nuevo Mensaje</h2>
+        <form id="formularioMensaje" onsubmit="enviarMensaje(); return false;">
+            <div>
+                <label for="asunto">Asunto del Mensaje:</label>
+                <input type="text" id="asunto" name="asunto" placeholder="Asunto del Mensaje" required>
+            </div>
+            <div>
+                <label for="cuerpoMensaje">Cuerpo del Mensaje:</label>
+                <textarea id="cuerpoMensaje" name="cuerpoMensaje" placeholder="Cuerpo del Mensaje" required></textarea>
+            </div>
+            <div>
+                <label for="importante">¿Es un mensaje importante?</label>
+                <input type="checkbox" id="importante" name="importante">
+            </div>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </div>
+
+    <script>
+        // Tu código JavaScript para mostrar correos y manejar los formularios va aquí
+
+        function mostrarPagina(numeroPagina) {
+            // Ocultar todas las páginas
+            document.getElementById("pagina1").style.display = "none";
+            document.getElementById("pagina2").style.display = "none";
+            document.getElementById("pagina3").style.display = "none";
+
+            // Mostrar la página correspondiente al número de página proporcionado
+            document.getElementById("pagina" + numeroPagina).style.display = "block";
+
+            // Si es la tercera página, también mostramos la tercera pantalla de correo electrónico
+            if (numeroPagina === 3) {
+                document.getElementById("terceraPantalla").style.display = "block";
+                document.getElementById("segundaPantalla").style.display = "none";
+            } else {
+                // Si no es la tercera página, mostramos la segunda pantalla de correo electrónico
+                document.getElementById("segundaPantalla").style.display = "block";
+                document.getElementById("terceraPantalla").style.display = "none";
+            }
+        }
+
+        // Tu función enviarMensaje() y otros códigos JavaScript van aquí
+    </script>
+</body>
+</html>
+
